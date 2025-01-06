@@ -1,90 +1,101 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Download } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Download } from "lucide-react";
 
 const posts = [
   {
     post_id: 1,
     user_id: 72,
-    post_type: 'reels',
+    post_type: "reels",
     likes: 27374,
     comments: 107,
     share: 547,
     reach: 499766,
-    timestamps: '2024-03-14T21:55:56Z',
-    content_length: 139
+    timestamps: "2024-03-14T21:55:56Z",
+    content_length: 139,
   },
   {
     post_id: 2,
     user_id: 74,
-    post_type: 'carousel',
+    post_type: "carousel",
     likes: 9822,
     comments: 544,
     share: 517,
     reach: 7182,
-    timestamps: '2024-10-26T06:04:56Z',
-    content_length: 209
+    timestamps: "2024-10-26T06:04:56Z",
+    content_length: 209,
   },
   {
     post_id: 3,
     user_id: 40,
-    post_type: 'static',
+    post_type: "static",
     likes: 57040,
     comments: 753,
     share: 124,
     reach: 947827,
-    timestamps: '2024-03-05T13:14:53Z',
-    content_length: 116
+    timestamps: "2024-03-05T13:14:53Z",
+    content_length: 116,
   },
   {
     post_id: 4,
     user_id: 32,
-    post_type: 'static',
+    post_type: "static",
     likes: 11713,
     comments: 282,
     share: 552,
     reach: 48221,
-    timestamps: '2024-12-03T07:25:46Z',
-    content_length: 262
+    timestamps: "2024-12-03T07:25:46Z",
+    content_length: 262,
   },
   {
     post_id: 5,
     user_id: 90,
-    post_type: 'reels',
+    post_type: "reels",
     likes: 41491,
     comments: 959,
     share: 272,
     reach: 193374,
-    timestamps: '2024-04-05T02:30:09Z',
-    content_length: 247
+    timestamps: "2024-04-05T02:30:09Z",
+    content_length: 247,
   },
 ];
 
-const tableHeader = ["Post ID", "User ID", "Type", "Likes", "Comments", "Shares", "Reach", "Timestamp", "Length"];
+const tableHeader = [
+  "Post ID",
+  "User ID",
+  "Type",
+  "Likes",
+  "Comments",
+  "Shares",
+  "Reach",
+  "Timestamp",
+  "Length",
+];
 
 const SocialMediaStats = () => {
   const formatDate = (dateString: any) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const handleDownload = () => {
     const headers = Object.keys(posts[0]);
     const csvContent = [
-      headers.join(','),
-      ...posts.map(post => headers.map(header => (post as any)[header]).join(','))
-    ].join('\n');
+      headers.join(","),
+      ...posts.map((post) =>
+        headers.map((header) => (post as any)[header]).join(",")
+      ),
+    ].join("\n");
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'social_media_stats.csv';
+    a.download = "social_media_stats.csv";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -93,12 +104,16 @@ const SocialMediaStats = () => {
 
   return (
     <motion.div
+      id="table"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      style={{ scrollMarginTop: "100px" }}
       className="w-full bg-white rounded-lg shadow-lg p-6 dark:bg-dark-100 "
     >
       <div className="flex justify-between items-center mb-6 ">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Sample Data</h2>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Sample Data
+        </h2>
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -115,7 +130,12 @@ const SocialMediaStats = () => {
           <thead>
             <tr className="bg-gray-50 border-b border-gray-200 ">
               {tableHeader.map((header, index) => (
-                <th key={index} className="p-4 text-left font-semibold text-gray-900">{header}</th>
+                <th
+                  key={index}
+                  className="p-4 text-left font-semibold text-gray-900"
+                >
+                  {header}
+                </th>
               ))}
             </tr>
           </thead>
@@ -133,21 +153,32 @@ const SocialMediaStats = () => {
                 <td className="p-4">
                   <motion.span
                     whileHover={{ scale: 1.05 }}
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${post.post_type === 'reels'
-                      ? 'bg-blue-100 text-blue-800'
-                      : post.post_type === 'carousel'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-purple-100 text-purple-800'
-                      }`}
+                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      post.post_type === "reels"
+                        ? "bg-blue-100 text-blue-800"
+                        : post.post_type === "carousel"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-purple-100 text-purple-800"
+                    }`}
                   >
                     {post.post_type}
                   </motion.span>
                 </td>
-                <td className="p-4 text-gray-800">{post.likes.toLocaleString()}</td>
-                <td className="p-4 text-gray-800">{post.comments.toLocaleString()}</td>
-                <td className="p-4 text-gray-800">{post.share.toLocaleString()}</td>
-                <td className="p-4 text-gray-800">{post.reach.toLocaleString()}</td>
-                <td className="p-4 text-gray-800">{formatDate(post.timestamps)}</td>
+                <td className="p-4 text-gray-800">
+                  {post.likes.toLocaleString()}
+                </td>
+                <td className="p-4 text-gray-800">
+                  {post.comments.toLocaleString()}
+                </td>
+                <td className="p-4 text-gray-800">
+                  {post.share.toLocaleString()}
+                </td>
+                <td className="p-4 text-gray-800">
+                  {post.reach.toLocaleString()}
+                </td>
+                <td className="p-4 text-gray-800">
+                  {formatDate(post.timestamps)}
+                </td>
                 <td className="p-4 text-gray-800">{post.content_length}</td>
               </motion.tr>
             ))}

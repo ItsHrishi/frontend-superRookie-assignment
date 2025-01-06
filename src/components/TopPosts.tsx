@@ -1,62 +1,80 @@
-import React from 'react';
-import { MessageCircle, Heart, Share2 } from 'lucide-react';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
 const TopPosts = () => {
-  const posts = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80",
-      engagement: { likes: "2.4k", comments: "89", shares: "156" },
-      platform: "Instagram"
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&q=80",
-      engagement: { likes: "1.8k", comments: "67", shares: "123" },
-      platform: "Facebook"
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&q=80",
-      engagement: { likes: "3.2k", comments: "145", shares: "234" },
-      platform: "Instagram"
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&q=80",
-      engagement: { likes: "3.2k", comments: "145", shares: "234" },
-      platform: "Instagram"
-    },
+  const data = [
+    { name: "Reels", value: 45 },
+    { name: "Static", value: 35 },
+    { name: "Carousel", value: 20 },
   ];
 
+  const COLORS = ["#EC4899", "#6366F1", "#10B981"];
+
   return (
-    <div className="bg-white p-6 rounded-xl border border-gray-100 dark:border-dark-300 dark:bg-dark-100">
-      <h2 className="text-lg font-semibold mb-4 dark:text-white">Top Performing Posts</h2>
-      <div className="space-y-4">
-        {posts.map((post) => (
-          <div key={post.id} className="flex items-center gap-4 p-3  rounded-lg transition-colors">
-            <img
-              src={post.image}
-              alt="Post thumbnail"
-              className="w-16 h-16 object-cover rounded-lg"
+    <div className="bg-white p-11 rounded-xl border border-gray-100 dark:border-dark-300 dark:bg-dark-100 shadow-xl">
+      <h2 className="text-lg font-semibold mb-6 dark:text-white">
+        Content Distribution
+      </h2>
+      <div className="w-full h-72 mt-4">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+              label={({ name, percent }) =>
+                `${name} ${(percent * 100).toFixed(0)}%`
+              }
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip
+              formatter={(value) => `${value}%`}
+              contentStyle={{
+                backgroundColor: "white",
+                borderRadius: "8px",
+                border: "1px solid #e2e8f0",
+              }}
             />
-            <div className="flex-1">
-              <span className="text-sm font-medium text-gray-200">{post.platform}</span>
-              <div className="flex gap-4 mt-2">
-                <div className="flex items-center gap-1">
-                  <Heart className="w-4 h-4 text-gray-500 dark:text-gray-300" />
-                  <span className="text-sm text-gray-600 dark:text-gray-300">{post.engagement.likes}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <MessageCircle className="w-4 h-4 text-gray-500 dark:text-gray-300" />
-                  <span className="text-sm text-gray-600 dark:text-gray-300">{post.engagement.comments}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Share2 className="w-4 h-4 text-gray-500 dark:text-gray-300" />
-                  <span className="text-sm text-gray-600 dark:text-gray-300">{post.engagement.shares}</span>
-                </div>
-              </div>
-            </div>
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              formatter={(value) => (
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                  {value}
+                </span>
+              )}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="grid grid-cols-3 gap-4 mt-4">
+        {data.map((item, index) => (
+          <div key={item.name} className="text-center">
+            <p
+              className="text-2xl font-semibold"
+              style={{ color: COLORS[index] }}
+            >
+              {item.value}%
+            </p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              {item.name}
+            </p>
           </div>
         ))}
       </div>

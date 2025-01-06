@@ -1,5 +1,4 @@
-import React from 'react';
-import { X, Minus } from 'lucide-react';
+import { X, Minus } from "lucide-react";
 
 interface ChatHeaderProps {
   onClose: () => void;
@@ -14,10 +13,16 @@ const ChatHeader = ({ onClose, onMinimize }: ChatHeaderProps) => {
         <h3 className="font-medium">Support Chat</h3>
       </div>
       <div className="flex gap-2">
-        <button onClick={onMinimize} className="hover:bg-primary-dark p-1 rounded transition-colors">
+        <button
+          onClick={onMinimize}
+          className="hover:bg-primary-dark p-1 rounded transition-colors"
+        >
           <Minus className="w-4 h-4" />
         </button>
-        <button onClick={onClose} className="hover:bg-primary-dark p-1 rounded transition-colors">
+        <button
+          onClick={onClose}
+          className="hover:bg-primary-dark p-1 rounded transition-colors"
+        >
           <X className="w-4 h-4" />
         </button>
       </div>
