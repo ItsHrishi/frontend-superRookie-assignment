@@ -1,16 +1,23 @@
-import { BarChart3 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import DemoButton from "./DemoButton";
 
 const Header = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-dark-100 border-b border-gray-200 dark:border-dark-300 shadow-sm">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-8 h-8 text-primary dark:text-primary-light" />
             <span className="text-2xl font-bold text-primary dark:text-primary-light">
-              SocialIQ.ai
+              <img
+                src="../../../assets/logo.png"
+                alt="Scroll to top"
+                className="h-8 w-auto object-contain cursor-pointer"
+                onClick={scrollToTop}
+              />
             </span>
           </div>
 
@@ -37,9 +44,8 @@ const Header = () => {
           </nav>
 
           {/* Right Section */}
-          <div className="flex  gap-4">
+          <div className="flex gap-4">
             <DemoButton />
-
             <ThemeToggle />
           </div>
         </div>

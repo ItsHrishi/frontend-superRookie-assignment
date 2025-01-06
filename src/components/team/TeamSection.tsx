@@ -2,31 +2,28 @@ import TeamMemberCard from "./TeamMemberCard";
 
 const teamMembers = [
   {
-    name: "Sarah Johnson",
-    role: "Lead Developer",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
-    github: "https://github.com/sarahj",
-    linkedin: "https://linkedin.com/in/sarahj",
-    email: "sarah@example.com",
+    name: "Ganesham Pareek",
+    role: "Software Developer",
+    image: "https://iili.io/2gKfVQp.jpg",
+    github: "https://github.com/Ganesham09",
+    linkedin: "https://www.linkedin.com/in/ganeshamp2/",
+    email: "work.ganeshampareek@gmail.com",
   },
   {
-    name: "Michael Chen",
-    role: "UI/UX Designer",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    github: "https://github.com/michaelc",
-    linkedin: "https://linkedin.com/in/michaelc",
-    email: "michael@example.com",
+    name: "Hrishikesh Gaikwad",
+    role: "Software Developer",
+    image: "https://iili.io/2gKxn3B.jpg",
+    github: "https://github.com/ItsHrishi",
+    linkedin: "https://www.linkedin.com/in/hrishikesh-sacchidanand-gaikwad/",
+    email: "ghrishikesh77@gmail.com",
   },
   {
-    name: "Emily Rodriguez",
-    role: "Product Manager",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-    github: "https://github.com/emilyr",
+    name: "Sahil Gupta",
+    role: "Backend Developer",
+    image: "https://iili.io/2gKxB4V.jpg",
+    github: "https://github.com/Sahil2012",
     linkedin: "https://linkedin.com/in/emilyr",
-    email: "emily@example.com",
+    email: "sahilhsgupta7@gmail.com",
   },
 ];
 

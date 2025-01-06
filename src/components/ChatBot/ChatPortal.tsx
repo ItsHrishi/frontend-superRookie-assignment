@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bot } from "lucide-react";
 import ChatHeader from "./ChatHeader";
 import ChatMessage from "./ChatMessage";
@@ -17,7 +17,7 @@ const ChatPortal = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "👋 Welcome to SocialMetrics AI Assistant! I can help you with:\n\n• Analytics insights\n• Performance metrics\n• Content recommendations\n• Custom reports\n\nHow can I assist you today?",
+      text: "👋 Welcome to social.ai 🤖 I am your personal Assistant! I can help you with:\n\n• Analytics insights\n• Performance metrics\n• Content recommendations\n• Custom reports\n\nHow can I assist you today?",
       isBot: true,
       timestamp: new Date().toLocaleTimeString([], {
         hour: "2-digit",
@@ -78,7 +78,6 @@ const ChatPortal = () => {
   }, []);
 
   const handleSend = (message: string) => {
-
     // check if the connection is active and message is not empty
     if (message.trim() && backendRef.current?.readyState == WebSocket.OPEN) {
       const newMessage: Message = {

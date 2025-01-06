@@ -1,4 +1,3 @@
-import React from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 interface TeamMemberProps {
@@ -19,7 +18,7 @@ const TeamMemberCard = ({
   email,
 }: TeamMemberProps) => {
   return (
-    <div className="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-sm hover:shadow-xl transition-shadow ">
       <div className="flex flex-col items-center">
         <img
           src={image}

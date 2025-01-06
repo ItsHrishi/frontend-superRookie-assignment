@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Heart, Share2, TrendingUp, Handshake } from "lucide-react";
+import { Heart, Share2, TrendingUp, Handshake } from "lucide-react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 // import Sidebar from './components/Sidebar';
 import StatCard from "./components/StatCard";
@@ -14,8 +14,6 @@ import AppDescription from "./components/AppDescription";
 import DataTable from "./components/analytics/DataTable";
 
 function App() {
-
-
   const stats = [
     { title: "Total Likes", value: "24.5K", change: 12, Icon: Heart },
     { title: "Engagement Rate", value: "5.2%", change: -2.3, Icon: Handshake },
@@ -35,26 +33,6 @@ function App() {
             transition={{ duration: 0.5 }}
             className="max-w-7xl mx-auto"
           >
-            {/* <header className="mb-8">
-              <div className="flex items-center gap-4">
-                <motion.h1
-                  initial={{ y: -20 }}
-                  animate={{ y: 0 }}
-                  className="text-2xl font-bold text-gray-900 dark:text-white"
-                >
-                  Analytics Dashboard
-                </motion.h1>
-              </div>
-
-              <motion.p
-                initial={{ y: -20 }}
-                animate={{ y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-gray-500 dark:text-gray-400 mt-1"
-              >
-                Track your social media performance
-              </motion.p>
-            </header> */}
             <AppDescription />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {stats.map((stat, index) => (
