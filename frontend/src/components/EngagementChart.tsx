@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import data from "./../utils/social-media-data.json"; // Assuming data is in the correct JSON format
+import data from "../utils/social-media-data.json"; // Assuming data is in the correct JSON format
 
 interface ChartData {
   date: string;
