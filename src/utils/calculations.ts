@@ -2,7 +2,7 @@ import { Heart, Handshake, Share2, TrendingUp } from "lucide-react"; // Import y
 import { LucideIcon } from 'lucide-react';
 
 
-import data from "./../../assets/social-media-data.json"; // Import your JSON data
+import data from "./social-media-data.json"; // Import your JSON data
 
 
 

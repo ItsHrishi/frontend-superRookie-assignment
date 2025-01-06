@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   LineChart,
   Line,
@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import data from "./../../assets/social-media-data.json"; // Assuming data is in the correct JSON format
+import data from "./../utils/social-media-data.json"; // Assuming data is in the correct JSON format
 
 interface ChartData {
   date: string;

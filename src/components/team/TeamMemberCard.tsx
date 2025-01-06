@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 interface TeamMemberProps {
   name: string;
@@ -6,7 +6,7 @@ interface TeamMemberProps {
   image: string;
   github?: string;
   linkedin?: string;
-  email?: string;
+  twitter?: string;
 }
 
 const TeamMemberCard = ({
@@ -15,7 +15,7 @@ const TeamMemberCard = ({
   image,
   github,
   linkedin,
-  email,
+  twitter,
 }: TeamMemberProps) => {
   return (
     <div className="bg-white dark:bg-dark-100 rounded-xl p-6 shadow-sm hover:shadow-xl transition-shadow ">
@@ -50,12 +50,14 @@ const TeamMemberCard = ({
               <Linkedin className="w-5 h-5" />
             </a>
           )}
-          {email && (
+          {twitter && (
             <a
-              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              href={twitter}
               className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
-              <Mail className="w-5 h-5" />
+              <Twitter className="w-5 h-5" />
             </a>
           )}
         </div>

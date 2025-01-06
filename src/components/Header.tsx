@@ -13,7 +13,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-primary dark:text-primary-light">
               <img
-                src="../../../assets/logo.png"
+                src="./../../../public/assets/logo.png"
                 alt="Scroll to top"
                 className="h-8 w-auto object-contain cursor-pointer"
                 onClick={scrollToTop}

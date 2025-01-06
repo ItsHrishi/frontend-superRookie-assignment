@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
                 <img
-                  src="../../../assets/logo.png"
+                  src="./../../../public/assets/logo.png"
                   alt=""
                   className="h-8 w-auto object-contain"
                 />

@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from "recharts";
 import { useMemo } from "react";
-import data from "./../../assets/social-media-data.json"; // Assuming your data is in the correct format
+import data from "./../utils/social-media-data.json"; // Assuming your data is in the correct format
 
 const TopPosts = () => {
   // Process the data to group by post type and count the number of posts per type

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import data from "./../../../assets/social-media-data.json"; // Assuming your data is in the correct format
+import data from "./../../utils/social-media-data.json"; // Assuming your data is in the correct format
 
 const PostTypeChart = () => {
   // Process the data to group by post type and sum up the likes, comments, and shares

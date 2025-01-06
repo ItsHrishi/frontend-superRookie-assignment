@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Film, Image, Images, Heart, MessageCircle, Share } from 'lucide-react';
-import data from "./../../../assets/social-media-data.json"; // Assuming your data is in the correct format
+import data from "./../../utils/social-media-data.json"; // Assuming your data is in the correct format
 
 interface MetricCardProps {
   type: string;

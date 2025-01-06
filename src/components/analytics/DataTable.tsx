@@ -83,7 +83,7 @@ const SocialMediaStats = () => {
   };
 
   const handleDownload = () => {
-    const filePath = "../../../assets/social-media-sample-data.csv"; // Path to the CSV file
+    const filePath = "./../../utils/social-media-data.json"; // Path to the CSV file
     const a = document.createElement("a");
     a.href = filePath;
     a.download = "social-media-sample-data.csv"; // The name to save the file as

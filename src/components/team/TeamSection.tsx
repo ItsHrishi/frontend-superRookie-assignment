@@ -7,7 +7,7 @@ const teamMembers = [
     image: "https://iili.io/2gKfVQp.jpg",
     github: "https://github.com/Ganesham09",
     linkedin: "https://www.linkedin.com/in/ganeshamp2/",
-    email: "work.ganeshampareek@gmail.com",
+    twitter: "https://x.com/ganesham89",
   },
   {
     name: "Hrishikesh Gaikwad",
@@ -15,15 +15,15 @@ const teamMembers = [
     image: "https://iili.io/2gKxn3B.jpg",
     github: "https://github.com/ItsHrishi",
     linkedin: "https://www.linkedin.com/in/hrishikesh-sacchidanand-gaikwad/",
-    email: "ghrishikesh77@gmail.com",
+    twitter: "https://x.com/ItsHrishikeshSG",
   },
   {
     name: "Sahil Gupta",
     role: "Backend Developer",
     image: "https://iili.io/2gKxB4V.jpg",
     github: "https://github.com/Sahil2012",
-    linkedin: "https://linkedin.com/in/emilyr",
-    email: "sahilhsgupta7@gmail.com",
+    linkedin: "https://www.linkedin.com/in/sahil-gupta7/",
+    twitter: "https://x.com/guptasahil7",
   },
 ];
 
