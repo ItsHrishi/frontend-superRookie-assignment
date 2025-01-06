@@ -12,14 +12,11 @@ import Footer from "./components/footer/Footer";
 import TeamSection from "./components/team/TeamSection";
 import AppDescription from "./components/AppDescription";
 import DataTable from "./components/analytics/DataTable";
+import { stats } from "./utils/calculations";
 
 function App() {
-  const stats = [
-    { title: "Total Likes", value: "24.5K", change: 12, Icon: Heart },
-    { title: "Engagement Rate", value: "5.2%", change: -2.3, Icon: Handshake },
-    { title: "Total Shares", value: "1.2K", change: 8.1, Icon: Share2 },
-    { title: "Average Reach", value: "+15.3%", change: 4.5, Icon: TrendingUp },
-  ];
+
+
 
   return (
     <ThemeProvider>
@@ -42,7 +39,12 @@ function App() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <StatCard {...stat} />
+                  <StatCard
+                    title={stat.title}
+                    value={stat.value}
+                    change={stat.change}
+                    Icon={stat.Icon}
+                  />
                 </motion.div>
               ))}
             </div>

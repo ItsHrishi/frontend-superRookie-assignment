@@ -1,28 +1,27 @@
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-const data = [
-  {
-    type: 'Reels',
-    likes: 2400,
-    comments: 800,
-    shares: 1200,
-  },
-  {
-    type: 'Static',
-    likes: 1800,
-    comments: 500,
-    shares: 900,
-  },
-  {
-    type: 'Carousel',
-    likes: 3200,
-    comments: 1100,
-    shares: 1600,
-  },
-];
+import data from "./../../../assets/social-media-data.json"; // Assuming your data is in the correct format
 
 const PostTypeChart = () => {
+  // Process the data to group by post type and sum up the likes, comments, and shares
+  const processedData: { [key: string]: { likes: number; comments: number; shares: number } } = data.reduce((acc: { [key: string]: { likes: number; comments: number; shares: number } }, post) => {
+    const postType = post.post_type;
+    if (!acc[postType]) {
+      acc[postType] = { likes: 0, comments: 0, shares: 0 };
+    }
+    acc[postType].likes += post.likes;
+    acc[postType].comments += post.comments;
+    acc[postType].shares += post.share;
+    return acc;
+  }, {});
+
+  const chartData = Object.entries(processedData).map(([type, values]) => ({
+    type,
+    likes: (values.likes / 15).toFixed(2), // Scale down the likes data by 1000 (adjust as needed)
+    comments: values.comments,
+    shares: values.shares,
+  }));
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,8 +29,7 @@ const PostTypeChart = () => {
       className="h-[300px] w-full"
     >
       <ResponsiveContainer width="100%" height="100%">
-
-        <BarChart data={data}>
+        <BarChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="type" />
           <YAxis />

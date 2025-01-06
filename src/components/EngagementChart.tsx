@@ -1,3 +1,4 @@
+import React, { useState, useMemo } from "react";
 import {
   LineChart,
   Line,
@@ -9,51 +10,60 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+import data from "./../../assets/social-media-data.json"; // Assuming data is in the correct JSON format
+
+interface ChartData {
+  date: string;
+  reels: number;
+  carousel: number;
+  static: number;
+}
+
 const EngagementChart = () => {
-  const data = [
-    {
-      date: "2024-03-01",
-      reels: 65,
-      carousel: 45,
-      static: 35,
-    },
-    {
-      date: "2024-03-02",
-      reels: 75,
-      carousel: 55,
-      static: 40,
-    },
-    {
-      date: "2024-03-03",
-      reels: 85,
-      carousel: 65,
-      static: 45,
-    },
-    {
-      date: "2024-03-04",
-      reels: 80,
-      carousel: 70,
-      static: 50,
-    },
-    {
-      date: "2024-03-05",
-      reels: 90,
-      carousel: 75,
-      static: 55,
-    },
-    {
-      date: "2024-03-06",
-      reels: 95,
-      carousel: 80,
-      static: 60,
-    },
-    {
-      date: "2024-03-07",
-      reels: 100,
-      carousel: 85,
-      static: 65,
-    },
-  ];
+  // Process raw data into chart-friendly format
+  const processedData: ChartData[] = useMemo(() => {
+    const groupedData: Record<string, { reels: number; carousel: number; static: number }> = {};
+
+    data.forEach((post) => {
+      const date = new Date(post.timestamps).toISOString().slice(0, 10); // YYYY-MM-DD
+
+      if (!groupedData[date]) {
+        groupedData[date] = { reels: 0, carousel: 0, static: 0 };
+      }
+
+      if (post.post_type === "reels") groupedData[date].reels += post.reach;
+      else if (post.post_type === "carousel") groupedData[date].carousel += post.reach;
+      else groupedData[date].static += post.reach;
+    });
+
+    return Object.entries(groupedData).map(([date, values]) => ({
+      date,
+      ...values,
+    }));
+  }, [data]);
+
+  // State for the date filter
+  const [filterRange, setFilterRange] = useState<string>("last7");
+
+  // Filtered data based on selected date range
+  const filteredData = useMemo(() => {
+    const today = new Date();
+    let filtered;
+
+    if (filterRange === "last7") {
+      const lastWeek = new Date();
+      lastWeek.setDate(today.getDate() - 7);
+      filtered = processedData.filter((item) => new Date(item.date) >= lastWeek);
+    } else if (filterRange === "last30") {
+      const lastMonth = new Date();
+      lastMonth.setDate(today.getDate() - 30);
+      filtered = processedData.filter((item) => new Date(item.date) >= lastMonth);
+    } else {
+      filtered = processedData; // Show all data
+    }
+
+    return filtered;
+  }, [processedData, filterRange]);
 
   return (
     <div className="bg-white dark:bg-dark-100 p-6 rounded-xl border border-gray-100 dark:border-dark-300 shadow-xl">
@@ -61,15 +71,21 @@ const EngagementChart = () => {
         <h2 className="text-lg font-semibold dark:text-white">
           Engagement Overview
         </h2>
-        {/* <select className="text-sm border rounded-lg px-3 py-2 bg-gray-50 dark:bg-dark-300 dark:text-gray-200 dark:border-dark-400">
-          <option>Last 7 days</option>
-          <option>Last 30 days</option>
-          <option>Last 90 days</option>
-        </select> */}
+        <select
+          className="text-sm border rounded-lg px-3 py-2 bg-gray-50 dark:bg-dark-300 dark:text-gray-200 dark:border-dark-400"
+          value={filterRange}
+          onChange={(e) => setFilterRange(e.target.value)}
+        >
+          <option value="last7">Last 7 days</option>
+          <option value="last30">Last 30 days</option>
+          <option value="all">All Time</option>
+        </select>
+
       </div>
       <div className="h-[400px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
+
+        <ResponsiveContainer width="100%" height="90%">
+          <LineChart data={filteredData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             <XAxis
               dataKey="date"
@@ -108,7 +124,6 @@ const EngagementChart = () => {
               dot={{ fill: "#06B6D4" }}
               name="Reels"
             />
-
             <Line
               type="monotone"
               dataKey="static"
@@ -126,7 +141,11 @@ const EngagementChart = () => {
               name="Carousel"
             />
           </LineChart>
+
         </ResponsiveContainer>
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+          The chart shows the reach of different post types (Reels, Carousel, Static) over time, highlighting performance trends.
+        </p>
       </div>
     </div>
   );

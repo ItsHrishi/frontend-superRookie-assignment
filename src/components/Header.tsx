@@ -27,7 +27,7 @@ const Header = () => {
               href="#table"
               className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light transition-colors"
             >
-              Data set
+              Data Set
             </a>
             <a
               href="#team"

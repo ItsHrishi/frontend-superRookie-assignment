@@ -6,26 +6,40 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import { useMemo } from "react";
+import data from "./../../assets/social-media-data.json"; // Assuming your data is in the correct format
 
 const TopPosts = () => {
-  const data = [
-    { name: "Reels", value: 45 },
-    { name: "Static", value: 35 },
-    { name: "Carousel", value: 20 },
-  ];
+  // Process the data to group by post type and count the number of posts per type
+  const processedData = useMemo(() => {
+    const postTypeCounts: Record<string, number> = { reels: 0, static: 0, carousel: 0 };
+
+    data.forEach((post) => {
+      if (post.post_type === "reels") postTypeCounts.reels += 1;
+      else if (post.post_type === "carousel") postTypeCounts.carousel += 1;
+      else postTypeCounts.static += 1;
+    });
+
+    // Convert the counts to a percentage
+    const totalPosts = data.length;
+    return Object.entries(postTypeCounts).map(([type, count]) => ({
+      name: type.charAt(0).toUpperCase() + type.slice(1), // Capitalize the type
+      value: (count / totalPosts) * 100, // Convert to percentage
+    }));
+  }, [data]);
 
   const COLORS = ["#06B6D4", "#F97316", "#EAB308"];
 
   return (
-    <div className="bg-white p-11 rounded-xl border border-gray-100 dark:border-dark-300 dark:bg-dark-100 shadow-xl">
+    <div className="bg-white py-7 px-5 rounded-xl border border-gray-100 dark:border-dark-300 dark:bg-dark-100 shadow-xl">
       <h2 className="text-lg font-semibold mb-6 dark:text-white">
         Content Distribution
       </h2>
-      <div className="w-full h-72 mt-4">
+      <div className="w-full h-72 mt-10 mb-10">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={data}
+              data={processedData}
               cx="50%"
               cy="50%"
               labelLine={false}
@@ -36,7 +50,7 @@ const TopPosts = () => {
                 `${name} ${(percent * 100).toFixed(0)}%`
               }
             >
-              {data.map((entry, index) => (
+              {processedData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
@@ -67,13 +81,13 @@ const TopPosts = () => {
         </ResponsiveContainer>
       </div>
       <div className="grid grid-cols-3 gap-4 mt-4">
-        {data.map((item, index) => (
+        {processedData.map((item, index) => (
           <div key={item.name} className="text-center">
             <p
               className="text-2xl font-semibold"
               style={{ color: COLORS[index] }}
             >
-              {item.value}%
+              {item.value.toFixed(0)}%
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-300">
               {item.name}

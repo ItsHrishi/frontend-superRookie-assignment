@@ -11,8 +11,24 @@ interface Message {
   timestamp: string;
 }
 
+const LoadingDots = () => {
+  const dots = [0, 0.2, 0.4]; // Animation delays for dots
+  return (
+    <div className="flex space-x-2 p-4">
+      {dots.map((delay, index) => (
+        <div
+          key={index}
+          className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-pulse"
+          style={{ animationDelay: `${delay}s` }}
+        ></div>
+      ))}
+    </div>
+  );
+};
+
 const ChatPortal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -56,11 +72,13 @@ const ChatPortal = () => {
             }),
           };
           setMessages((prevMsg) => [...prevMsg, newMsg]);
+          setIsLoading(false);
         } else {
           console.error("Agent field not found in the message response");
         }
       } catch (error) {
         console.error("Error parsing WebSocket message:", error);
+        setIsLoading(false);
       }
     };
 
@@ -80,6 +98,7 @@ const ChatPortal = () => {
   const handleSend = (message: string) => {
     // check if the connection is active and message is not empty
     if (message.trim() && backendRef.current?.readyState == WebSocket.OPEN) {
+      setIsLoading(true);
       const newMessage: Message = {
         id: messages.length + 1,
         text: message,
@@ -139,6 +158,14 @@ const ChatPortal = () => {
                 timestamp={message.timestamp}
               />
             ))}
+            {isLoading && (
+              <div className="flex items-start gap-2 p-4">
+                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                  <Bot className="w-5 h-5 text-white" />
+                </div>
+                <LoadingDots />
+              </div>
+            )}
           </div>
           <ChatInput onSend={handleSend} />
         </>

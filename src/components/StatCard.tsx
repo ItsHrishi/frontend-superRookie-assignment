@@ -3,10 +3,11 @@ import { LucideIcon } from 'lucide-react';
 
 interface StatCardProps {
   title: string;
-  value: string;
+  value: number | string;
   change: number;
   Icon: LucideIcon;
 }
+
 
 const StatCard = ({ title, value, change, Icon }: StatCardProps) => {
   const isPositive = change >= 0;
