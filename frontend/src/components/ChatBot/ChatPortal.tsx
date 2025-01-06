@@ -44,7 +44,7 @@ const ChatPortal = () => {
   const backendRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    const url = "wss://social-media-engagement.onrender.com";
+    const url = import.meta.env.VITE_BACKEND_URL as string;
 
     // init websocket
     backendRef.current = new WebSocket(url);
