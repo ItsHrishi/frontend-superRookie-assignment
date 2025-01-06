@@ -1,4 +1,5 @@
 import { Github, Twitter, Mail } from "lucide-react";
+import logo from "./../../assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,7 +17,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
                 <img
-                  src="./../../../public/assets/logo.png"
+                  src={logo}
                   alt=""
                   className="h-8 w-auto object-contain"
                 />

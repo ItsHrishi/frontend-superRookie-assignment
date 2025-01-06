@@ -1,5 +1,6 @@
 import ThemeToggle from "./ThemeToggle";
 import DemoButton from "./DemoButton";
+import logo from './../assets/logo.png';
 
 const Header = () => {
   const scrollToTop = () => {
@@ -13,7 +14,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-primary dark:text-primary-light">
               <img
-                src="./../../../public/assets/logo.png"
+                src={logo}
                 alt="Scroll to top"
                 className="h-8 w-auto object-contain cursor-pointer"
                 onClick={scrollToTop}
