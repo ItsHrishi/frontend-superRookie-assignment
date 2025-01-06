@@ -20,7 +20,7 @@ const Header = () => {
               href="#table"
               className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light transition-colors"
             >
-              Sample Data
+              Data set
             </a>
             <a
               href="#team"

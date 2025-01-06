@@ -52,7 +52,7 @@ const PostTypeMetrics = () => {
   const metrics = [
     {
       type: 'Reels',
-      icon: <Film className="w-5 h-5 text-blue-500" />,
+      icon: <Film className="w-5 h-5 text-red-500" />,
       metrics: { likes: 2400, comments: 800, shares: 1200 },
     },
     {
@@ -62,7 +62,7 @@ const PostTypeMetrics = () => {
     },
     {
       type: 'Carousel',
-      icon: <Images className="w-5 h-5 text-orange-500" />,
+      icon: <Images className="w-5 h-5 text-yellow-500" />,
       metrics: { likes: 3200, comments: 1100, shares: 1600 },
     },
   ];

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Heart, Share2, TrendingUp } from "lucide-react";
+import { Users, Heart, Share2, TrendingUp, Handshake } from "lucide-react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 // import Sidebar from './components/Sidebar';
 import StatCard from "./components/StatCard";
@@ -14,11 +14,13 @@ import AppDescription from "./components/AppDescription";
 import DataTable from "./components/analytics/DataTable";
 
 function App() {
+
+
   const stats = [
-    { title: "Total Followers", value: "24.5K", change: 12, Icon: Users },
-    { title: "Engagement Rate", value: "5.2%", change: -2.3, Icon: Heart },
+    { title: "Total Likes", value: "24.5K", change: 12, Icon: Heart },
+    { title: "Engagement Rate", value: "5.2%", change: -2.3, Icon: Handshake },
     { title: "Total Shares", value: "1.2K", change: 8.1, Icon: Share2 },
-    { title: "Reach Growth", value: "+15.3%", change: 4.5, Icon: TrendingUp },
+    { title: "Average Reach", value: "+15.3%", change: 4.5, Icon: TrendingUp },
   ];
 
   return (

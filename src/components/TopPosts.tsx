@@ -14,7 +14,7 @@ const TopPosts = () => {
     { name: "Carousel", value: 20 },
   ];
 
-  const COLORS = ["#EC4899", "#6366F1", "#10B981"];
+  const COLORS = ["#06B6D4", "#F97316", "#EAB308"];
 
   return (
     <div className="bg-white p-11 rounded-xl border border-gray-100 dark:border-dark-300 dark:bg-dark-100 shadow-xl">
@@ -46,9 +46,12 @@ const TopPosts = () => {
             <Tooltip
               formatter={(value) => `${value}%`}
               contentStyle={{
-                backgroundColor: "white",
+                backgroundColor: "var(--tw-bg-opacity-1, white)",
+                border: "1px solid #e5e7eb",
                 borderRadius: "8px",
-                border: "1px solid #e2e8f0",
+                color: "var(--tw-text-opacity-1, black)",
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                padding: "12px",
               }}
             />
             <Legend

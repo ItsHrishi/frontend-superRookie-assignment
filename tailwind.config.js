@@ -16,6 +16,14 @@ export default {
           300: "#2D2D2D",
           400: "#3D3D3D",
         },
+        // color1: "#06B6D4",
+        // color2: "#F97316",
+        // color3: "#EAB308",
+        chart: {
+          color1: "#06B6D4",
+          color2: "#F97316",
+          color3: "#EAB308",
+        },
       },
       boxShadow: {
         "dark-sm": "0 1px 2px 0 rgba(0, 0, 0, 0.35)",

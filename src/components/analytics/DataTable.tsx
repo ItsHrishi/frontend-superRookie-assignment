@@ -83,23 +83,13 @@ const SocialMediaStats = () => {
   };
 
   const handleDownload = () => {
-    const headers = Object.keys(posts[0]);
-    const csvContent = [
-      headers.join(","),
-      ...posts.map((post) =>
-        headers.map((header) => (post as any)[header]).join(",")
-      ),
-    ].join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
+    const filePath = "../../../assets/social-media-sample-data.csv"; // Path to the CSV file
     const a = document.createElement("a");
-    a.href = url;
-    a.download = "social_media_stats.csv";
+    a.href = filePath;
+    a.download = "social-media-sample-data.csv"; // The name to save the file as
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
   };
 
   return (
@@ -112,7 +102,7 @@ const SocialMediaStats = () => {
     >
       <div className="flex justify-between items-center mb-6 ">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-          Sample Data
+          Data set
         </h2>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -153,13 +143,12 @@ const SocialMediaStats = () => {
                 <td className="p-4">
                   <motion.span
                     whileHover={{ scale: 1.05 }}
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      post.post_type === "reels"
-                        ? "bg-blue-100 text-blue-800"
-                        : post.post_type === "carousel"
+                    className={`px-3 py-1 rounded-full text-xs font-medium ${post.post_type === "reels"
+                      ? "bg-blue-100 text-blue-800"
+                      : post.post_type === "carousel"
                         ? "bg-green-100 text-green-800"
                         : "bg-purple-100 text-purple-800"
-                    }`}
+                      }`}
                   >
                     {post.post_type}
                   </motion.span>

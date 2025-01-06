@@ -30,15 +30,24 @@ const PostTypeChart = () => {
       className="h-[300px] w-full"
     >
       <ResponsiveContainer width="100%" height="100%">
+
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="type" />
           <YAxis />
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "var(--tw-bg-opacity-1, white)",
+              border: "1px solid #e5e7eb",
+              borderRadius: "8px",
+              color: "var(--tw-text-opacity-1, black)",
+              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+              padding: "12px",
+            }} />
           <Legend />
-          <Bar dataKey="likes" fill="#EC4899" name="Likes" />
-          <Bar dataKey="comments" fill="#6366F1" name="Comments" />
-          <Bar dataKey="shares" fill="#10B981" name="Shares" />
+          <Bar dataKey="likes" fill="#06B6D4" name="Likes" />
+          <Bar dataKey="comments" fill="#F97316" name="Comments" />
+          <Bar dataKey="shares" fill="#EAB308" name="Shares" />
         </BarChart>
       </ResponsiveContainer>
     </motion.div>

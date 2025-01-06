@@ -70,7 +70,7 @@ const EngagementChart = () => {
       <div className="h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
             <XAxis
               dataKey="date"
               stroke="#6B7280"
@@ -84,10 +84,12 @@ const EngagementChart = () => {
             <YAxis stroke="#6B7280" />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#1F2937",
-                border: "none",
+                backgroundColor: "var(--tw-bg-opacity-1, white)",
+                border: "1px solid #e5e7eb",
                 borderRadius: "8px",
-                color: "#F3F4F6",
+                color: "var(--tw-text-opacity-1, black)",
+                boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+                padding: "12px",
               }}
               labelFormatter={(value) =>
                 new Date(value).toLocaleDateString("en-US", {
@@ -101,26 +103,27 @@ const EngagementChart = () => {
             <Line
               type="monotone"
               dataKey="reels"
-              stroke="#EC4899"
+              stroke="#06B6D4"
               strokeWidth={2}
-              dot={{ fill: "#EC4899" }}
+              dot={{ fill: "#06B6D4" }}
               name="Reels"
+            />
+
+            <Line
+              type="monotone"
+              dataKey="static"
+              stroke="#F97316"
+              strokeWidth={2}
+              dot={{ fill: "#F97316" }}
+              name="Static"
             />
             <Line
               type="monotone"
               dataKey="carousel"
-              stroke="#6366F1"
+              stroke="#EAB308"
               strokeWidth={2}
-              dot={{ fill: "#6366F1" }}
+              dot={{ fill: "#EAB308" }}
               name="Carousel"
-            />
-            <Line
-              type="monotone"
-              dataKey="static"
-              stroke="#10B981"
-              strokeWidth={2}
-              dot={{ fill: "#10B981" }}
-              name="Static"
             />
           </LineChart>
         </ResponsiveContainer>
