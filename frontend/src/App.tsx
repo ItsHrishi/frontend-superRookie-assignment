@@ -12,13 +12,11 @@ import TeamSection from "./components/team/TeamSection";
 import AppDescription from "./components/AppDescription";
 import DataTable from "./components/analytics/DataTable";
 import { stats } from "./utils/calculations";
-import { Analytics } from '@vercel/analytics/next';
 
 
 function App() {
   return (
     <ThemeProvider>
-      <Analytics />
       <div className="flex flex-col bg-gray-50 dark:bg-dark-200 min-h-screen transition-colors duration-200">
         <Header />
         <main className="flex-1 p-8">
