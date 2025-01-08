@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Heart, Share2, TrendingUp, Handshake } from "lucide-react";
 import { ThemeProvider } from "./contexts/ThemeContext";
-// import Sidebar from './components/Sidebar';
+
 import StatCard from "./components/StatCard";
 import EngagementChart from "./components/EngagementChart";
 import TopPosts from "./components/TopPosts";
@@ -15,13 +14,9 @@ import DataTable from "./components/analytics/DataTable";
 import { stats } from "./utils/calculations";
 
 function App() {
-
-
-
   return (
     <ThemeProvider>
       <div className="flex flex-col bg-gray-50 dark:bg-dark-200 min-h-screen transition-colors duration-200">
-        {/* <Sidebar /> */}
         <Header />
         <main className="flex-1 p-8">
           <motion.div
